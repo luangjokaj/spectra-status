@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
 
 :root {
-	--primary-color: #00508C;
+	--primary-color: #C850C0;
 	--primary-color-hovered: color(var(--primary-color) lightness(45%));
-	--secondary-color: #002D50;
-	--extra-color: #FF4900;
+	--secondary-color: #4158D0;
+	--extra-color: #FFCC70;
 	--white: #FFFFFF;
 	--black: #000000;
 	--light-gray: #E5E5E5;
 	--medium-gray: #7A7A7A;
 	--dark-gray: #4A4A4A;
-	--success-color: #2ecc71;
-	--error-color: #e74c3c;
+	--success-color: #B8E986;
+	--error-color: #FF5A2D;
 }
 
 @custom-media --screen-tiny (max-width: 320px);

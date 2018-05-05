@@ -1,2 +1,26 @@
 @import './assets/variables.css';
 @import './assets/globals.css';
+
+#root,
+.ss-wrapper {
+	height: 100%;
+}
+
+.ss-wrapper {
+	display: flex;
+
+	& .ss-container {
+		margin: auto;
+
+		& .ss-header {
+			text-align: center;
+			width: 100%;
+		}
+
+		& .ss-content {
+			max-width: 640px;
+			width: 100%;
+			margin: auto;
+		}
+	}
+}

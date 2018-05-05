@@ -32,21 +32,19 @@ class App extends Component {
 	render() {
 		const { isVisible, spectra } = this.state;
 		return (
-			<div className={classNames('App', {
-				'visible': isVisible
+			<div className={classNames('ss-wrapper', {
+				'loaded': isVisible
 			})}>
-				<header className="App-header">
-					<Logo />
-				</header>
-				{isVisible && <div>
-					<span>Grape Status:</span> {spectra.grapeStatus}
-					<span>Mango Status:</span> {spectra.mangoStatus}
-					<span>Version:</span> {spectra.version}
-				</div>}
-				{isVisible ?<div>isVisible Ture</div>:<div>isVisible False</div>}
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
+				<main className="ss-container">
+					<header className="ss-header">
+						<Logo />
+					</header>
+					{isVisible && <div className="ss-content">
+						<span>Grape Status:</span> {spectra.grapeStatus}
+						<span>Mango Status:</span> {spectra.mangoStatus}
+						<span>Version:</span> {spectra.version}
+					</div>}
+				</main>
 			</div>
 		);
 	}
