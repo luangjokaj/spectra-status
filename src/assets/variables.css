@@ -12,6 +12,10 @@
 	--dark-gray: #4A4A4A;
 	--success-color: #B8E986;
 	--error-color: #FF5A2D;
+
+	--light-blue: #F1F8FF;
+	--medium-blue: #D9EBFF;
+	--dark-blue: #C3DFFF;
 }
 
 @custom-media --screen-tiny (max-width: 320px);
