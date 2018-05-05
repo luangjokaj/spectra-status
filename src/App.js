@@ -3,7 +3,8 @@ import classNames from 'classnames';
 import Logo from './assets/svg/Logo';
 import './App.css';
 
-const API = 'https://riangle.com/healthcheck.json';
+const APITEST = 'https://riangle.com/healthcheck-test.json';
+const APIPROD = 'https://riangle.com/healthcheck-prod.json';
 
 class App extends Component {
 	constructor(props) {
@@ -17,14 +18,16 @@ class App extends Component {
 
 	componentDidMount() {
 		setTimeout(() => {
-			fetch(API)
+			fetch(APITEST)
 			.then(response => response.json())
 			.then(data => this.setState({
 				spectra: {
-					grapeStatus: data.grape.status,
-					mangoStatus: data.mango.status,
-					version: data.grape.data.spectra,
-					time: data.grape.data.time,
+					test: {
+						grapeStatus: data.grape.status,
+						mangoStatus: data.mango.status,
+						version: data.grape.data.spectra,
+						time: data.grape.data.time,
+					}
 				}, 
 				isVisible: true
 			}))
@@ -51,34 +54,34 @@ class App extends Component {
 						<section>
 							<div><h2>Test</h2></div>
 							<div>
-								Spectra <strong>{spectra.version}</strong>
+								Spectra <strong>{spectra.test.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={spectra.grapeStatus}>{spectra.grapeStatus}</i>
+								<i className={spectra.test.grapeStatus}>{spectra.test.grapeStatus}</i>
 								</div>
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={spectra.mangoStatus}>{spectra.mangoStatus}</i>
+								<i className={spectra.test.mangoStatus}>{spectra.test.mangoStatus}</i>
 								</div>
 						</section>
 						<section>
 							<div><h2>Prod</h2></div>
 							<div>
-								Spectra <strong>{spectra.version}</strong>
+								Spectra <strong>{spectra.test.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={spectra.grapeStatus}>{spectra.grapeStatus}</i>
+								<i className={spectra.test.grapeStatus}>{spectra.test.grapeStatus}</i>
 								</div>
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={spectra.grapeStatus}>{spectra.mangoStatus}</i>
+								<i className={spectra.test.grapeStatus}>{spectra.test.mangoStatus}</i>
 								</div>
 						</section>
 						<section className="ss-time">
 							<div>
-								{spectra.time}
+								{spectra.test.time}
 							</div>
 						</section>
 					</div>}
