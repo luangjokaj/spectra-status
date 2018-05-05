@@ -38,6 +38,10 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 0;
 }
 
+h1, h2 {
+	font-weight: 100;
+}
+
 h1 {
 	font-size: var(--h1-font-size);
 	line-height: var(--h1-line-height);
@@ -56,4 +60,8 @@ p {
 
 svg, svg * {
 	transition: all .3s ease;
+}
+
+strong {
+	font-weight: bold;
 }

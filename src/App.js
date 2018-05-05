@@ -40,9 +40,39 @@ class App extends Component {
 						<Logo />
 					</header>
 					{isVisible && <div className="ss-content">
-						<span>Grape Status:</span> {spectra.grapeStatus}
-						<span>Mango Status:</span> {spectra.mangoStatus}
-						<span>Version:</span> {spectra.version}
+						<section>
+							<div><h2>Test</h2></div>
+							<div>
+								Spectra <strong>{spectra.version}</strong>
+								</div>
+							<div>
+								Grape <span role="img" aria-label="grape">🍇</span>
+								<i className={spectra.grapeStatus}>{spectra.grapeStatus}</i>
+								</div>
+							<div>
+								Mango <span role="img" aria-label="mango">🍊</span>
+								<i className={spectra.mangoStatus}>{spectra.mangoStatus}</i>
+								</div>
+						</section>
+						<section>
+							<div><h2>Prod</h2></div>
+							<div>
+								Spectra <strong>{spectra.version}</strong>
+								</div>
+							<div>
+								Grape <span role="img" aria-label="grape">🍇</span>
+								<i className={spectra.grapeStatus}>{spectra.grapeStatus}</i>
+								</div>
+							<div>
+								Mango <span role="img" aria-label="mango">🍊</span>
+								<i className={spectra.grapeStatus}>{spectra.mangoStatus}</i>
+								</div>
+						</section>
+						<section className="ss-time">
+							<div>
+								{spectra.time}
+							</div>
+						</section>
 					</div>}
 				</main>
 			</div>

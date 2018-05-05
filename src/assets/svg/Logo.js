@@ -2,7 +2,7 @@ import React from 'react';
 
 function Svg() {
 	return (
-		<svg xmlns="http://www.w3.org/2000/svg" width="158" height="110" viewBox="0 0 158 110">
+		<svg className="ss-logo" xmlns="http://www.w3.org/2000/svg" width="158" height="110" viewBox="0 0 158 110">
 			<defs>
 				<linearGradient id="logo-a" x1="100%" x2="0%" y1="50%" y2="50%">
 				<stop offset="0%" stopColor="#FFCC70"/>
