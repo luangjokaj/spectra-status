@@ -28,7 +28,7 @@ class App extends Component {
 				}, 
 				isVisible: true
 			}))
-		}, 1000)
+		}, 3000)
 	}
 
 	render() {
