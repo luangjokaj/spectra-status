@@ -27,27 +27,25 @@ class App extends Component {
 			APIPROD
 		])
 		.then(([responseTest, responseProd]) => {
-			console.log(responseTest.grape.data.spectra);
-			console.log(responseProd.grape.data.spectra);
-
-			this.setState({
-				spectra: {
-					test: {
-						grapeStatus: responseTest.grape.status,
-						mangoStatus: responseTest.mango.status,
-						version: responseTest.grape.data.spectra,
-						time: responseTest.grape.data.time,
+			setTimeout(() => {
+				this.setState({
+					spectra: {
+						test: {
+							grapeStatus: responseTest.grape.status,
+							mangoStatus: responseTest.mango.status,
+							version: responseTest.grape.data.spectra,
+							time: responseTest.grape.data.time,
+						},
+						prod: {
+							grapeStatus: responseProd.grape.status,
+							mangoStatus: responseProd.mango.status,
+							version: responseProd.grape.data.spectra,
+							time: responseProd.grape.data.time,
+						}
 					},
-					prod: {
-						grapeStatus: responseProd.grape.status,
-						mangoStatus: responseProd.mango.status,
-						version: responseProd.grape.data.spectra,
-						time: responseProd.grape.data.time,
-					}
-				},
-				isVisible: true
-			})
-			
+					isVisible: true
+				})
+			}, 1000)
 		})
 	}
 
