@@ -1,6 +1,7 @@
 @import './assets/variables.css';
 @import './assets/globals.css';
 
+#root,
 .ss-wrapper {
 	height: 100%;
 }
