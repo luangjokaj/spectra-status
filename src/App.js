@@ -16,17 +16,19 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		fetch(API)
-		.then(response => response.json())
-		.then(data => this.setState({
-			spectra: {
-				grapeStatus: data.grape.status,
-				mangoStatus: data.mango.status,
-				version: data.grape.data.spectra,
-				time: data.grape.data.time,
-			}, 
-			isVisible: true
-		}))
+		setTimeout(() => {
+			fetch(API)
+			.then(response => response.json())
+			.then(data => this.setState({
+				spectra: {
+					grapeStatus: data.grape.status,
+					mangoStatus: data.mango.status,
+					version: data.grape.data.spectra,
+					time: data.grape.data.time,
+				}, 
+				isVisible: true
+			}))
+		}, 1000)
 	}
 
 	render() {
@@ -36,8 +38,14 @@ class App extends Component {
 				'loaded': isVisible
 			})}>
 				<main className="ss-container">
-					<header className="ss-header">
-						<Logo />
+					<header className={classNames('ss-header', {
+							'loaded': isVisible
+						})}>
+						<div className="ss-logo">
+							<Logo shape1 />
+							<Logo shape2 />
+							<Logo name />
+						</div>
 					</header>
 					{isVisible && <div className="ss-content">
 						<section>
