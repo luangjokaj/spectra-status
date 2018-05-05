@@ -3,8 +3,13 @@ import classNames from 'classnames';
 import Logo from './assets/svg/Logo';
 import './App.css';
 
-const APITEST = 'https://riangle.com/healthcheck-test.json';
-const APIPROD = 'https://riangle.com/healthcheck-prod.json';
+const APITEST = fetch('https://riangle.com/healthcheck-test.json').then((response) => {
+	return response.json();
+});
+
+const APIPROD = fetch('https://riangle.com/healthcheck-prod.json').then((response) => {
+	return response.json();
+});
 
 class App extends Component {
 	constructor(props) {
@@ -17,21 +22,33 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		setTimeout(() => {
-			fetch(APITEST)
-			.then(response => response.json())
-			.then(data => this.setState({
+		Promise.all([
+			APITEST,
+			APIPROD
+		])
+		.then(([responseTest, responseProd]) => {
+			console.log(responseTest.grape.data.spectra);
+			console.log(responseProd.grape.data.spectra);
+
+			this.setState({
 				spectra: {
 					test: {
-						grapeStatus: data.grape.status,
-						mangoStatus: data.mango.status,
-						version: data.grape.data.spectra,
-						time: data.grape.data.time,
+						grapeStatus: responseTest.grape.status,
+						mangoStatus: responseTest.mango.status,
+						version: responseTest.grape.data.spectra,
+						time: responseTest.grape.data.time,
+					},
+					prod: {
+						grapeStatus: responseProd.grape.status,
+						mangoStatus: responseProd.mango.status,
+						version: responseProd.grape.data.spectra,
+						time: responseProd.grape.data.time,
 					}
-				}, 
+				},
 				isVisible: true
-			}))
-		}, 3000)
+			})
+			
+		})
 	}
 
 	render() {
@@ -68,15 +85,15 @@ class App extends Component {
 						<section>
 							<div><h2>Prod</h2></div>
 							<div>
-								Spectra <strong>{spectra.test.version}</strong>
+								Spectra <strong>{spectra.prod.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={spectra.test.grapeStatus}>{spectra.test.grapeStatus}</i>
+								<i className={spectra.prod.grapeStatus}>{spectra.prod.grapeStatus}</i>
 								</div>
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={spectra.test.grapeStatus}>{spectra.test.mangoStatus}</i>
+								<i className={spectra.prod.grapeStatus}>{spectra.prod.mangoStatus}</i>
 								</div>
 						</section>
 						<section className="ss-time">
