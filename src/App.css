@@ -170,18 +170,6 @@
 				flex-basis: 50%;
 				box-sizing: border-box;
 				padding: 0px;
-
-				&.ss-time {
-					width: 100%;
-					flex-basis: 100%;
-					text-align: center;
-					color: var(--dark-blue);
-					font-size: var(--small-font-size);
-
-					& div {
-						border-bottom: none;
-					}
-				}
 				
 				&:first-child {
 					border-right: solid 1px var(--medium-blue);
@@ -193,6 +181,14 @@
 					width: 100%;
 					border-bottom: solid 1px var(--medium-blue);
 					vertical-align: middle;
+
+					&.ss-time {
+						width: 100%;
+						flex-basis: 100%;
+						color: var(--dark-blue);
+						font-size: var(--small-font-size);
+						border-bottom: none;
+					}
 
 					& i {
 						vertical-align: middle;

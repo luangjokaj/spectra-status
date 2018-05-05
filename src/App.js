@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import Logo from './assets/svg/Logo';
 import './App.css';
 
-const APITEST = fetch('https://riangle.com/healthcheck-test.json').then((response) => {
+const APITEST = fetch('https://riangle.com/healthcheck-test').then((response) => {
 	return response.json();
 });
 
-const APIPROD = fetch('https://riangle.com/healthcheck-prod.json').then((response) => {
+const APIPROD = fetch('https://riangle.com/healthcheck-prod').then((response) => {
 	return response.json();
 });
 
@@ -32,6 +32,7 @@ class App extends Component {
 			APIPROD
 		])
 		.then(([responseTest, responseProd]) => {
+			console.log(responseTest);
 			setTimeout(() => {
 				this.setState({
 					spectra: {
@@ -87,7 +88,10 @@ class App extends Component {
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={spectra.test.mangoStatus}>{spectra.test.mangoStatus}</i>
-								</div>
+							</div>
+							<div className="ss-time">
+								{spectra.test.time}
+							</div>
 						</section>
 						<section>
 							<div><h2>Prod</h2></div>
@@ -101,11 +105,9 @@ class App extends Component {
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={spectra.prod.grapeStatus}>{spectra.prod.mangoStatus}</i>
-								</div>
-						</section>
-						<section className="ss-time">
-							<div>
-								{spectra.test.time}
+							</div>
+							<div className="ss-time">
+								{spectra.prod.time}
 							</div>
 						</section>
 					</div>}
