@@ -4,6 +4,6 @@
 * React
 * postCSS
 
-[![Schreenshot](https://i.imgur.com/eXt52Jm.png)](https://luangjokaj.github.io/spectra-status/)
+[![Schreenshot](https://i.imgur.com/kKtmkNl.png)](https://luangjokaj.github.io/spectra-status/)
 
 [Documentation](DOCUMENTATION.md)

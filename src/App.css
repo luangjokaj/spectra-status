@@ -180,6 +180,12 @@
 					width: 100%;
 					border-bottom: solid 1px var(--medium-blue);
 					vertical-align: middle;
+					font-size: var(--small-font-size);
+					color: var(--medium-gray);
+
+					& h2 {
+						color: var(--black);
+					}
 
 					&.ss-time {
 						width: 100%;

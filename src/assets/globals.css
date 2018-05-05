@@ -28,7 +28,8 @@ figure {
 
 strong, b {
 	font-family: var(--font-head);
-	font-weight: normal;
+	font-weight: bold;
+	color: var(--black);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -36,6 +37,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 	margin: 0;
 	padding: 0;
+	color: var(--black);
 }
 
 h1, h2 {
@@ -60,8 +62,4 @@ p {
 
 svg, svg * {
 	transition: all .3s ease;
-}
-
-strong {
-	font-weight: bold;
 }
