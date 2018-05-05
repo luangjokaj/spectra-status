@@ -100,11 +100,16 @@
 			}
 
 			& .ss-logo {
+				cursor: pointer;
 				width: 204px;
 				height: 200px;
 				position: relative;
 				margin: auto;
 				transition: all .5s ease;
+
+				&:hover {
+					transform: scale(1.05);
+				}
 
 				& .ss-first,
 				& .ss-second,

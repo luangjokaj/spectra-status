@@ -21,7 +21,12 @@ class App extends Component {
 		}
 	}
 
-	componentDidMount() {
+	loadData = () => {
+		this.setState({ isVisible: false });
+		this.fetchData();
+	}
+
+	fetchData = () => {
 		Promise.all([
 			APITEST,
 			APIPROD
@@ -49,6 +54,10 @@ class App extends Component {
 		})
 	}
 
+	componentDidMount() {
+		this.fetchData();
+	}
+
 	render() {
 		const { isVisible, spectra } = this.state;
 		return (
@@ -59,7 +68,7 @@ class App extends Component {
 					<header className={classNames('ss-header', {
 							'loaded': isVisible
 						})}>
-						<div className="ss-logo">
+						<div className="ss-logo" onClick={this.loadData}>
 							<Logo shape1 />
 							<Logo shape2 />
 							<Logo name />
