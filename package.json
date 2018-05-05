@@ -1,6 +1,6 @@
 {
-	"name": "reactify",
-	"homepage": "https://luangjokaj.github.io/reactify",
+	"name": "spectra-status",
+	"homepage": "https://luangjokaj.github.io/spectra-status",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
