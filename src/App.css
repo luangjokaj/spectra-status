@@ -151,7 +151,6 @@
 			margin: 0 auto 20px;
 			background: var(--light-blue);
 			display: flex;
-			flex-wrap: wrap;
 			box-sizing: border-box;
 			padding: 0;
 			border-radius: 10px;
