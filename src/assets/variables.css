@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
-@import '../../node_modules/normalize.css/normalize.css';
 
 :root {
 	--primary-color: #00508C;
@@ -26,10 +25,8 @@
 @custom-media --screen-4k (min-width: 3870px);
 
 :root {
-	--font-text: 'Frutiger Roman';
-	--font-light: 'Frutiger Light';
-	--font-bold: 'Frutiger Bold';
-	--font-head: 'Lora', serif;
+	--font-text: 'Roboto', sans-serif;;
+	--font-head: 'Roboto', sans-serif;
 	--font-special: var(--font-head);
 
 	--smaller-font-size: 12px;
