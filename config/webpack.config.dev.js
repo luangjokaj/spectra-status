@@ -82,7 +82,7 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx', '.css'],
     alias: {
       
       // Support React Native Web
@@ -163,12 +163,14 @@ module.exports = {
               {
                 loader: require.resolve('css-loader'),
                 options: {
-                  importLoaders: 1,
+				  importLoaders: 1,
+				  sourceMap: true,
                 },
               },
               {
                 loader: require.resolve('postcss-loader'),
                 options: {
+					sourceMap: true,
                   // Necessary for external CSS imports to work
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',

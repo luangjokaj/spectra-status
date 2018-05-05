@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import logo from './logo.svg';
+import Logo from './assets/svg/Logo';
 import './App.css';
 
 const API = 'https://riangle.com/healthcheck.json';
@@ -36,8 +36,7 @@ class App extends Component {
 				'visible': isVisible
 			})}>
 				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
+					<Logo />
 				</header>
 				{isVisible && <div>
 					<span>Grape Status:</span> {spectra.grapeStatus}
