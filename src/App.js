@@ -79,7 +79,7 @@ class App extends Component {
 						<section>
 							<div><h2>Test</h2></div>
 							<div>
-								Spectra <strong>{spectra.test.version}</strong>
+								<em>Spectra</em> <strong>{spectra.test.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
@@ -96,7 +96,7 @@ class App extends Component {
 						<section>
 							<div><h2>Prod</h2></div>
 							<div>
-								Spectra <strong>{spectra.prod.version}</strong>
+								<em>Spectra</em> <strong>{spectra.prod.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>

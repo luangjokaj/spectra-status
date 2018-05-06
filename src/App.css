@@ -187,6 +187,14 @@
 						color: var(--black);
 					}
 
+					& em {
+						font-style: normal;
+
+						@media (--screen-mobile) {
+							display: none;
+						}
+					}
+
 					&.ss-time {
 						width: 100%;
 						flex-basis: 100%;
