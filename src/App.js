@@ -3,13 +3,9 @@ import classNames from 'classnames';
 import Logo from './assets/svg/Logo';
 import './App.css';
 
-const APITEST = fetch('https://riangle.com/healthcheck-test').then((response) => {
-	return response.json();
-});
+const APITEST = 'https://riangle.com/healthcheck-test';
 
-const APIPROD = fetch('https://riangle.com/healthcheck-prod').then((response) => {
-	return response.json();
-});
+const APIPROD = 'https://riangle.com/healthcheck-prod';
 
 class App extends Component {
 	constructor(props) {
@@ -28,8 +24,12 @@ class App extends Component {
 
 	fetchData = () => {
 		Promise.all([
-			APITEST,
-			APIPROD
+			fetch(APITEST).then((response) => {
+				return response.json();
+			}),
+			fetch(APIPROD).then((response) => {
+				return response.json();
+			})
 		])
 		.then(([responseTest, responseProd]) => {
 			console.log(responseTest);
