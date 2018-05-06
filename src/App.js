@@ -32,7 +32,6 @@ class App extends Component {
 			})
 		])
 		.then(([responseTest, responseProd]) => {
-			console.log(responseTest);
 			setTimeout(() => {
 				this.setState({
 					spectra: {
@@ -47,6 +46,28 @@ class App extends Component {
 							mangoStatus: responseProd.mango.status,
 							version: responseProd.grape.data.spectra,
 							time: responseProd.grape.data.time,
+						}
+					},
+					isVisible: true
+				})
+			}, 1000)
+		})
+		.catch((err) => {
+			setTimeout(() => {
+				console.log(err);
+				this.setState({
+					spectra: {
+						test: {
+							grapeStatus: 'offline',
+							mangoStatus: 'offline',
+							version: 'Unknown',
+							time: 'Unknown',
+						},
+						prod: {
+							grapeStatus: 'offline',
+							mangoStatus: 'offline',
+							version: 'Unknown',
+							time: 'Unknown',
 						}
 					},
 					isVisible: true
