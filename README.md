@@ -5,6 +5,6 @@
 * postCSS
 
 ---
-[![Schreenshot](https://svgshare.com/i/6Z6.svg)](https://luangjokaj.github.io/spectra-status/)
+[![Schreenshot](https://svgshare.com/i/6Z6.svg)](https://spectra-status.com/)
 ---
 [Documentation](DOCUMENTATION.md)
