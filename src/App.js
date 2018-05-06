@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Logo from './assets/svg/Logo';
+import Github from './assets/svg/Github';
 import './App.css';
 
 const APITEST = 'https://riangle.com/healthcheck-test';
-
 const APIPROD = 'https://riangle.com/healthcheck-prod';
 
 class App extends Component {
@@ -111,6 +111,9 @@ class App extends Component {
 							</div>
 						</section>
 					</div>}
+					<div className="ss-github">
+						<a href="https://github.com/luangjokaj/spectra-status"><Github /></a>
+					</div>
 				</main>
 			</div>
 		);

@@ -46,6 +46,12 @@
 			& .ss-content {
 				animation: show-content 1s 1 forwards ease .3s;
 			}
+
+			& .ss-github {
+				transform: translateY(0);
+				opacity: 1;
+				transition-delay: 1s;
+			}
 		}
 	}
 
@@ -123,6 +129,7 @@
 				& .ss-name {
 					opacity: 0;
 					left: 116px;
+					transition-delay: 0s;
 				}
 
 				& .ss-first,
@@ -238,6 +245,15 @@
 					}
 				}
 			}
+		}
+
+		& .ss-github {
+			text-align: center;
+			margin: 0 0 20px 0;
+			transition: all .5s ease;
+			transition-delay: 0s;
+			transform: translateY(-20px);
+			opacity: 0;
 		}
 	}
 }
