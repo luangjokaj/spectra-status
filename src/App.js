@@ -4,8 +4,8 @@ import Logo from './assets/svg/Logo';
 import Github from './assets/svg/Github';
 import './App.css';
 
-const APITEST = 'https://riangle.com/healthcheck-test';
-const APIPROD = 'https://riangle.com/healthcheck-prod';
+const APITEST = 'https://riangle.com/healthcheck-test.php';
+const APIPROD = 'https://riangle.com/healthcheck-prod.php';
 
 class App extends Component {
 	constructor(props) {
