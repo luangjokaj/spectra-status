@@ -1,6 +1,7 @@
 @import './assets/variables.css';
 @import './assets/globals.css';
 
+
 #root,
 .ss-wrapper {
 	height: 100%;
@@ -92,7 +93,7 @@
 
 					& .ss-second {
 						transform: rotate(90deg) scale(.6);
-						top: 52px;
+						top: 51px;
 					}
 
 					& .ss-name {
