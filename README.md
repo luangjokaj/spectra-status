@@ -5,6 +5,6 @@
 * postCSS
 
 ---
-[![Schreenshot](https://res.cloudinary.com/deep-impact-ag/image/upload/v1525734974/prev_gkgtyg.png)](https://spectra-status.com/)
+[![Schreenshot](https://i.imgur.com/KD3hh1z.png)](https://spectra-status.com/)
 ---
 [Documentation](DOCUMENTATION.md)
