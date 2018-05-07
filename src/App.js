@@ -133,7 +133,12 @@ class App extends Component {
 						</section>
 					</div>}
 					<div className="ss-github">
-						<a href="https://github.com/luangjokaj/spectra-status"><Github /></a>
+						<a href="https://github.com/luangjokaj/spectra-status" 
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Github />
+						</a>
 					</div>
 				</main>
 			</div>
