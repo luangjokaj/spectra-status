@@ -225,7 +225,7 @@
 							border-radius: 50%;
 							background: var(--black);
 							vertical-align: middle;
-							margin-left: 5px;
+							margin: 2px 0 3px 5px;
 						}
 
 						&.online {
@@ -234,6 +234,7 @@
 							}
 						}
 
+						&.down,
 						&.offline {
 							&:after {
 								background: var(--error-color);
