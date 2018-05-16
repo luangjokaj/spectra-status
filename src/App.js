@@ -4,8 +4,10 @@ import Logo from './assets/svg/Logo';
 import Github from './assets/svg/Github';
 import './App.css';
 
-const APITEST = 'https://riangle.com/healthcheck-test.php';
-const APIPROD = 'https://riangle.com/healthcheck-prod.php';
+const TEST = 'https://riangle.com/healthcheck-test.php';
+const PROD = 'https://riangle.com/healthcheck-prod.php';
+const CHTEST = 'https://riangle.com/healthcheck-ch-test.php';
+const CHPROD = 'https://riangle.com/healthcheck-ch-prod.php';
 
 class App extends Component {
 	constructor(props) {
@@ -14,6 +16,8 @@ class App extends Component {
 		this.state = {
 			test: {},
 			prod: {},
+			chTest: {},
+			chProd: {},
 		}
 	}
 
@@ -21,68 +25,45 @@ class App extends Component {
 		this.setState({
 			test: {},
 			prod: {},
+			chTest: {},
+			chProd: {},
 		});
 		this.fetchData();
 	}
 
-	fetchTest = () => {
-		fetch(APITEST).then((response) => {
+	fetchAPI = (API, env) => {
+		fetch(API).then((response, env) => {
 			return response.json();
-		})
-		.then((responseTest) => {
+		}).then((receivedResponse) => {
 			this.setState({
-				test: {
-					grapeStatus: responseTest.grape.status,
-					mangoStatus: responseTest.mango.status,
-					version: responseTest.grape.data.spectra,
-					time: responseTest.grape.data.time,
+			[env]: {
+					grapeStatus: receivedResponse.grape.status,
+					mangoStatus: receivedResponse.mango.status,
+					version: receivedResponse.grape.data.spectra,
+					time: receivedResponse.grape.data.time,
 				}
 			})
-		})
-		.catch((error) => {
+			console.log(this.state);
+		}).catch((error) => {
 			console.log(error);
 			this.setState({
-				test: {
-					grapeStatus: 'down',
-					mangoStatus: 'down',
-					version: 'Unknown',
-					time: 'Unknown',
-				}
-			});
-		})
-	}
-
-	fetchProd = () => {
-		fetch(APIPROD).then((response) => {
-			return response.json();
-		})
-		.then((responseProd) => {
-			this.setState({
-				prod: {
-					grapeStatus: responseProd.grape.status,
-					mangoStatus: responseProd.mango.status,
-					version: responseProd.grape.data.spectra,
-					time: responseProd.grape.data.time,
-				}
-			});
-		})
-		.catch((error) => {
-			console.log(error);
-			this.setState({
-				prod: {
+				[env]: {
 					grapeStatus: 'down',
 					mangoStatus: 'down',
 					version: 'Unknown',
 					time: 'Unknown',
 				}
 			})
+			this.setState()
 		})
 	}
 
 	fetchData = () => {
 		setTimeout(() => {
-			this.fetchProd();
-			this.fetchTest();
+			this.fetchAPI(TEST, 'test');
+			this.fetchAPI(PROD, 'prod');
+			this.fetchAPI(CHTEST, 'chTest');
+			this.fetchAPI(CHPROD, 'chProd');
 		}, 1500);
 	}
 
@@ -91,8 +72,8 @@ class App extends Component {
 	}
 
 	render() {
-		const { prod, test } = this.state;
-		const hasData = prod['version'] && test['version'];
+		const { test, prod, chTest, chProd } = this.state;
+		const hasData = prod['version'] && test['version'] && test['version'];
 		return (
 			<div className={classNames('ss-wrapper', {
 				'loaded': hasData
@@ -140,6 +121,40 @@ class App extends Component {
 							</div>
 							<div className="ss-time">
 								{prod.time}
+							</div>
+						</section>
+						<section>
+							<div><h2>CH Test</h2></div>
+							<div>
+								<em>Spectra</em> <strong>{chTest.version}</strong>
+								</div>
+							<div>
+								Grape <span role="img" aria-label="grape">🍇</span>
+								<i className={chTest.grapeStatus}>{chTest.grapeStatus}</i>
+								</div>
+							<div>
+								Mango <span role="img" aria-label="mango">🍊</span>
+								<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
+							</div>
+							<div className="ss-time">
+								{test.time}
+							</div>
+						</section>
+						<section>
+							<div><h2>CH Prod</h2></div>
+							<div>
+								<em>Spectra</em> <strong>{chProd.version}</strong>
+								</div>
+							<div>
+								Grape <span role="img" aria-label="grape">🍇</span>
+								<i className={chProd.grapeStatus}>{chProd.grapeStatus}</i>
+								</div>
+							<div>
+								Mango <span role="img" aria-label="mango">🍊</span>
+								<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
+							</div>
+							<div className="ss-time">
+								{chProd.time}
 							</div>
 						</section>
 					</div>}
