@@ -54,7 +54,6 @@ class App extends Component {
 					time: 'Unknown',
 				}
 			})
-			this.setState()
 		})
 	}
 
