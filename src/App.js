@@ -36,6 +36,8 @@ class App extends Component {
 			return response.json();
 		}).then((receivedResponse) => {
 			console.log(receivedResponse, 'responseee');
+			let freeMemory = receivedResponse.grape.data.memory.free.match(/^\d*/);
+			let totalMemory = receivedResponse.grape.data.memory.total.match(/^\d*/);
 			this.setState({
 			[env]: {
 					grapeStatus: receivedResponse.grape.status,
@@ -43,8 +45,8 @@ class App extends Component {
 					version: receivedResponse.grape.data.spectra,
 					time: receivedResponse.grape.data.time,
 					memory: {
-						free: receivedResponse.grape.data.memory.free,
-						total: receivedResponse.grape.data.memory.total,
+						free: freeMemory,
+						total: totalMemory,
 					}
 				}
 			})
@@ -114,10 +116,10 @@ class App extends Component {
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
-										<em>Free</em><strong>{test.memory.free}</strong>
+										<em>Free</em><strong>{test.memory.free} MB</strong>
 									</div>
 									<div>
-										<em>Total</em><strong>{test.memory.total}</strong>
+										<em>Total</em><strong>{test.memory.total} MB</strong>
 									</div>
 								</section>
 							</div>
@@ -142,10 +144,10 @@ class App extends Component {
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
-										<em>Free</em><strong>{prod.memory.free}</strong>
+										<em>Free</em><strong>{prod.memory.free} MB</strong>
 									</div>
 									<div>
-										<em>Total</em><strong>{prod.memory.total}</strong>
+										<em>Total</em><strong>{prod.memory.total} MB</strong>
 									</div>
 								</section>
 							</div>
@@ -170,10 +172,10 @@ class App extends Component {
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
-										<em>Free</em><strong>{chTest.memory.free}</strong>
+										<em>Free</em><strong>{chTest.memory.free} MB</strong>
 									</div>
 									<div>
-										<em>Total</em><strong>{chTest.memory.total}</strong>
+										<em>Total</em><strong>{chTest.memory.total} MB</strong>
 									</div>
 								</section>
 							</div>
@@ -198,10 +200,10 @@ class App extends Component {
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
-										<em>Free</em><strong>{chProd.memory.free}</strong>
+										<em>Free</em><strong>{chProd.memory.free} MB</strong>
 									</div>
 									<div>
-										<em>Total</em><strong>{chProd.memory.total}</strong>
+										<em>Total</em><strong>{chProd.memory.total} MB</strong>
 									</div>
 								</section>
 							</div>
