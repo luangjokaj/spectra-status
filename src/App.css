@@ -217,6 +217,49 @@
 						border-bottom: none;
 					}
 
+					&.ss-memory {
+						& section {
+							display: flex;
+							border: none;
+							margin: 10px 0 0 0;
+							padding: 10px 0 0 0;
+							border-top: solid 1px var(--medium-blue);
+
+							@media (--screen-mobile) {
+								display: block;
+							}
+
+							& div {
+								width: 50%;
+								border: none;
+								margin: 0;
+								padding: 0;
+
+								@media (--screen-mobile) {
+									width: 100%;
+								}
+
+								&:last-child {
+									text-align: right;
+
+									@media (--screen-mobile) {
+										text-align: left;
+									}
+								}
+
+								& strong {
+									padding-left: 5px;
+								}
+
+								& em {
+									@media (--screen-mobile) {
+										display: inline;
+									}
+								}
+							}
+						}
+					}
+
 					& i {
 						vertical-align: middle;
 						font-style: normal;

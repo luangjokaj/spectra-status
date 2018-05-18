@@ -35,12 +35,17 @@ class App extends Component {
 		fetch(API).then((response, env) => {
 			return response.json();
 		}).then((receivedResponse) => {
+			console.log(receivedResponse, 'responseee');
 			this.setState({
 			[env]: {
 					grapeStatus: receivedResponse.grape.status,
 					mangoStatus: receivedResponse.mango.status,
 					version: receivedResponse.grape.data.spectra,
 					time: receivedResponse.grape.data.time,
+					memory: {
+						free: receivedResponse.grape.data.memory.free,
+						total: receivedResponse.grape.data.memory.total,
+					}
 				}
 			})
 			console.log(this.state);
@@ -52,6 +57,10 @@ class App extends Component {
 					mangoStatus: 'down',
 					version: 'Unknown',
 					time: 'Unknown',
+					memory: {
+						free: 'Unknown',
+						total: 'Unknown',
+					}
 				}
 			})
 		})
@@ -101,6 +110,17 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={test.mangoStatus}>{test.mangoStatus}</i>
 							</div>
+							<div className="ss-memory">
+								Memory <span role="img" aria-label="mango">💾</span>
+								<section>
+									<div>
+										<em>Free</em><strong>{test.memory.free}</strong>
+									</div>
+									<div>
+										<em>Total</em><strong>{test.memory.total}</strong>
+									</div>
+								</section>
+							</div>
 							<div className="ss-time">
 								{test.time}
 							</div>
@@ -117,6 +137,17 @@ class App extends Component {
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={prod.grapeStatus}>{prod.mangoStatus}</i>
+							</div>
+							<div className="ss-memory">
+								Memory <span role="img" aria-label="mango">💾</span>
+								<section>
+									<div>
+										<em>Free</em><strong>{prod.memory.free}</strong>
+									</div>
+									<div>
+										<em>Total</em><strong>{prod.memory.total}</strong>
+									</div>
+								</section>
 							</div>
 							<div className="ss-time">
 								{prod.time}
@@ -135,6 +166,17 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
 							</div>
+							<div className="ss-memory">
+								Memory <span role="img" aria-label="mango">💾</span>
+								<section>
+									<div>
+										<em>Free</em><strong>{chTest.memory.free}</strong>
+									</div>
+									<div>
+										<em>Total</em><strong>{chTest.memory.total}</strong>
+									</div>
+								</section>
+							</div>
 							<div className="ss-time">
 								{test.time}
 							</div>
@@ -151,6 +193,17 @@ class App extends Component {
 							<div>
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
+							</div>
+							<div className="ss-memory">
+								Memory <span role="img" aria-label="mango">💾</span>
+								<section>
+									<div>
+										<em>Free</em><strong>{chProd.memory.free}</strong>
+									</div>
+									<div>
+										<em>Total</em><strong>{chProd.memory.total}</strong>
+									</div>
+								</section>
 							</div>
 							<div className="ss-time">
 								{chProd.time}
