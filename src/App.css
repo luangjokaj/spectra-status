@@ -187,15 +187,18 @@
 
 			& section {
 				flex-basis: 25%;
+				max-width: 25%;
 				box-sizing: border-box;
 				padding: 0px;
 
 				@media (--screen-tablet) {
 					flex-basis: 50%;
+					max-width: 50%;
 				}
 
 				@media (--screen-mobile) {
 					flex-basis: 100%;
+					max-width: 100%;
 				}
 
 				&:nth-child(1),
@@ -249,9 +252,15 @@
 							padding: 10px 0 5px 0;
 							border-top: solid 1px var(--medium-blue);
 							position: relative;
+							max-width: 100%;
+
+							@media (--screen-tablet) {
+								max-width: 100%;
+							}
 
 							@media (--screen-mobile) {
 								display: block;
+								max-width: 100%;
 							}
 
 							& div {
