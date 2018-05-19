@@ -35,11 +35,13 @@ class App extends Component {
 		fetch(API).then((response, env) => {
 			return response.json();
 		}).then((receivedResponse) => {
-			console.log(receivedResponse, 'responseee');
-			let freeMemory = receivedResponse.grape.data.memory.free.match(/^\d*/);
-			let totalMemory = receivedResponse.grape.data.memory.total.match(/^\d*/);
-			let calculated = totalMemory - freeMemory;
-			let percentage = (calculated / freeMemory) * 100;
+			console.log(receivedResponse, 'Response');
+			const freeMemory = receivedResponse.grape.data.memory.free.match(/^\d*/);
+			const totalMemory = receivedResponse.grape.data.memory.total.match(/^\d*/);
+			const difference = (totalMemory[0] - freeMemory[0]);
+			const average = (Number(totalMemory[0]) + Number(freeMemory[0])) / 2;
+			const percentage = (difference / average) * 100;
+
 			this.setState({
 			[env]: {
 					grapeStatus: receivedResponse.grape.status,
