@@ -111,7 +111,7 @@ class App extends Component {
 						{test && <section>
 							<div><h2>Test</h2></div>
 							<div>
-								<em>Spectra</em> <strong>{test.version}</strong>
+								<em>Spectra</em> <strong>{test.version && test.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
@@ -146,7 +146,7 @@ class App extends Component {
 						{prod && <section>
 							<div><h2>Prod</h2></div>
 							<div>
-								<em>Spectra</em> <strong>{prod.version}</strong>
+								<em>Spectra</em> <strong>{prod.version && prod.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
@@ -181,7 +181,7 @@ class App extends Component {
 						{preTest && <section>
 							<div><h2>Pre Test</h2></div>
 							<div>
-								<em>Spectra</em> <strong>{preTest.version}</strong>
+								<em>Spectra</em> <strong>{preTest.version  && preTest.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
@@ -216,7 +216,7 @@ class App extends Component {
 						{chTest && <section>
 							<div><h2>CH Test</h2></div>
 							<div>
-								<em>Spectra</em> <strong>{chTest.version}</strong>
+								<em>Spectra</em> <strong>{chTest.version && chTest.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
@@ -251,7 +251,7 @@ class App extends Component {
 						{chProd && <section>
 							<div><h2>CH Prod</h2></div>
 							<div>
-								<em>Spectra</em> <strong>{chProd.version}</strong>
+								<em>Spectra</em> <strong>{chProd.version && chProd.version}</strong>
 								</div>
 							<div>
 								Grape <span role="img" aria-label="grape">🍇</span>
