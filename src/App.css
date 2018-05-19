@@ -329,6 +329,7 @@
 									bottom: 0;
 									right: 0;
 									background: var(--medium-blue);
+									max-width: 98%;
 									
 									&:after {
 										content: none;
