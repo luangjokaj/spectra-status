@@ -17,275 +17,342 @@ class App extends Component {
 		this.state = {
 			test: {},
 			prod: {},
+			preTest: {},
 			chTest: {},
 			chProd: {},
-		}
+		};
 	}
 
 	loadData = () => {
 		this.setState({
 			test: {},
 			prod: {},
+			preTest: {},
 			chTest: {},
 			chProd: {},
 		});
 		this.fetchData();
-	}
+	};
 
 	fetchAPI = (API, env) => {
-		fetch(API).then((response, env) => {
-			return response.json();
-		}).then((receivedResponse) => {
-			console.log(receivedResponse, 'Response');
-			const freeMemory = receivedResponse.grape.data.memory.free.match(/^\d*/);
-			const totalMemory = receivedResponse.grape.data.memory.total.match(/^\d*/);
-			const difference = (Number(totalMemory[0]) - Number(freeMemory[0]));
-			const average = (Number(totalMemory[0]) + Number(freeMemory[0])) / 2;
-			const percentage = (difference / average) * 100;
+		fetch(API)
+			.then((response, env) => {
+				return response.json();
+			})
+			.then(receivedResponse => {
+				console.log(receivedResponse, 'Response');
+				const freeMemory = receivedResponse.grape.data.memory.free.match(/^\d*/);
+				const totalMemory = receivedResponse.grape.data.memory.total.match(/^\d*/);
+				const difference = Number(totalMemory[0]) - Number(freeMemory[0]);
+				const average = (Number(totalMemory[0]) + Number(freeMemory[0])) / 2;
+				const percentage = difference / average * 100;
 
-			this.setState({
-			[env]: {
-					grapeStatus: receivedResponse.grape.status,
-					mangoStatus: receivedResponse.mango.status,
-					version: receivedResponse.grape.data.spectra,
-					time: receivedResponse.grape.data.time,
-					memory: {
-						free: freeMemory,
-						total: totalMemory,
-						percentage: percentage,
-					}
-				}
+				this.setState({
+					[env]: {
+						grapeStatus: receivedResponse.grape.status,
+						mangoStatus: receivedResponse.mango.status,
+						version: receivedResponse.grape.data.spectra,
+						time: receivedResponse.grape.data.time,
+						memory: {
+							free: freeMemory,
+							total: totalMemory,
+							percentage: percentage,
+						},
+					},
+				});
+				console.log(this.state);
 			})
-			console.log(this.state);
-		}).catch((error) => {
-			console.log(error);
-			this.setState({
-				[env]: {
-					grapeStatus: 'down',
-					mangoStatus: 'down',
-					version: 'Unknown',
-					time: 'Unknown',
-					memory: {
-						free: 'Unknown',
-						total: 'Unknown',
-						percentage: 0,
-					}
-				}
-			})
-		})
-	}
+			.catch(error => {
+				console.log(error);
+				this.setState({
+					[env]: {
+						grapeStatus: 'down',
+						mangoStatus: 'down',
+						version: 'Unknown',
+						time: 'Unknown',
+						memory: {
+							free: 'Unknown',
+							total: 'Unknown',
+							percentage: 0,
+						},
+					},
+				});
+			});
+	};
 
 	fetchData = () => {
 		setTimeout(() => {
 			this.fetchAPI(TEST, 'test');
 			this.fetchAPI(PROD, 'prod');
+			this.fetchAPI(PRETEST, 'preTest');
 			this.fetchAPI(CHTEST, 'chTest');
 			this.fetchAPI(CHPROD, 'chProd');
-			this.fetchAPI(PRETEST, 'preTest');
 		}, 1500);
-	}
+	};
 
 	componentDidMount() {
 		this.fetchData();
 	}
 
 	render() {
-		const { test, prod, chTest, chProd, preTest } = this.state;
-		const hasData = prod['version'] && test['version'] && test['version'];
+		const { test, prod, preTest, chTest, chProd } = this.state;
+		const hasData =
+			test['version'] &&
+			prod['version'] &&
+			preTest['version'] &&
+			chTest['version'] &&
+			chProd['version'];
 
 		return (
-			<div className={classNames('ss-wrapper', {
-				'loaded': hasData
-			})}>
+			<div
+				className={classNames('ss-wrapper', {
+					loaded: hasData,
+				})}
+			>
 				<main className="ss-container">
-					<header className={classNames('ss-header', {
-							'loaded': hasData
-						})}>
+					<header
+						className={classNames('ss-header', {
+							loaded: hasData,
+						})}
+					>
 						<div className="ss-logo" onClick={this.loadData}>
 							<Logo shape1 />
 							<Logo shape2 />
 							<Logo name />
 						</div>
 					</header>
-					{hasData && <div className="ss-content">
-						{test && <section>
-							<div><h2>Test</h2></div>
-							<div>
-								<em>Spectra</em> <strong>{test.version && test.version}</strong>
+					{hasData && (
+						<div className="ss-content">
+							<section>
+								<div>
+									<h2>Test</h2>
 								</div>
-							<div>
-								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={test.grapeStatus}>{test.grapeStatus}</i>
+								<div>
+									<em>Spectra</em> <strong>{test.version}</strong>
 								</div>
-							<div>
-								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={test.mangoStatus}>{test.mangoStatus}</i>
-							</div>
-							{test.memory && <div className="ss-memory">
-								Memory
-								<section>
-									<div>
-										<em>Free</em><strong>{test.memory.free} MB</strong>
-									</div>
-									<div>
-										<em>Total</em><strong>{test.memory.total} MB</strong>
-									</div>
-									<span className={classNames('ss-progress', {
-										'red': test.memory.percentage > 70,
-										'warning': test.memory.percentage > 40,
-										'error': test.memory.percentage === 0,
-									})}>
-										<i style={{width: `${test.memory.percentage}%`}} />
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
 									</span>
-								</section>
-							</div>}
-							<div className="ss-time">
-								{test.time}
-							</div>
-						</section>}
-						{prod && <section>
-							<div><h2>Prod</h2></div>
-							<div>
-								<em>Spectra</em> <strong>{prod.version && prod.version}</strong>
+									<i className={test.grapeStatus}>{test.grapeStatus}</i>
 								</div>
-							<div>
-								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={prod.grapeStatus}>{prod.grapeStatus}</i>
-								</div>
-							<div>
-								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={prod.grapeStatus}>{prod.mangoStatus}</i>
-							</div>
-							{prod.memory && <div className="ss-memory">
-								Memory
-								<section>
-									<div>
-										<em>Free</em><strong>{prod.memory.free} MB</strong>
-									</div>
-									<div>
-										<em>Total</em><strong>{prod.memory.total} MB</strong>
-									</div>
-									<span className={classNames('ss-progress', {
-										'red': prod.memory.percentage > 70,
-										'warning': prod.memory.percentage > 40,
-										'error': prod.memory.percentage === 0,
-									})}>
-										<i style={{width: `${prod.memory.percentage}%`}} />
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
 									</span>
-								</section>
-							</div>}
-							<div className="ss-time">
-								{prod.time}
-							</div>
-						</section>}
-						{preTest && <section>
-							<div><h2>Pre Test</h2></div>
-							<div>
-								<em>Spectra</em> <strong>{preTest.version  && preTest.version}</strong>
+									<i className={test.mangoStatus}>{test.mangoStatus}</i>
 								</div>
-							<div>
-								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={preTest.grapeStatus}>{preTest.grapeStatus}</i>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Free</em>
+											<strong>{test.memory.free} MB</strong>
+										</div>
+										<div>
+											<em>Total</em>
+											<strong>{test.memory.total} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: test.memory.percentage > 70,
+												warning: test.memory.percentage > 40,
+												error: test.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${test.memory.percentage}%` }} />
+										</span>
+									</section>
 								</div>
-							<div>
-								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={preTest.grapeStatus}>{preTest.mangoStatus}</i>
-							</div>
-							{preTest.memory && <div className="ss-memory">
-								Memory
-								<section>
-									<div>
-										<em>Free</em><strong>{preTest.memory.free} MB</strong>
-									</div>
-									<div>
-										<em>Total</em><strong>{preTest.memory.total} MB</strong>
-									</div>
-									<span className={classNames('ss-progress', {
-										'red': preTest.memory.percentage > 70,
-										'warning': preTest.memory.percentage > 40,
-										'error': preTest.memory.percentage === 0,
-									})}>
-										<i style={{width: `${preTest.memory.percentage}%`}} />
+								<div className="ss-time">{test.time}</div>
+							</section>
+							<section>
+								<div>
+									<h2>Prod</h2>
+								</div>
+								<div>
+									<em>Spectra</em> <strong>{prod.version}</strong>
+								</div>
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
 									</span>
-								</section>
-							</div>}
-							<div className="ss-time">
-								{preTest.time}
-							</div>
-						</section>}
-						{chTest && <section>
-							<div><h2>CH Test</h2></div>
-							<div>
-								<em>Spectra</em> <strong>{chTest.version && chTest.version}</strong>
+									<i className={prod.grapeStatus}>{prod.grapeStatus}</i>
 								</div>
-							<div>
-								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={chTest.grapeStatus}>{chTest.grapeStatus}</i>
-								</div>
-							<div>
-								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
-							</div>
-							{chTest.memory && <div className="ss-memory">
-								Memory
-								<section>
-									<div>
-										<em>Free</em><strong>{chTest.memory.free} MB</strong>
-									</div>
-									<div>
-										<em>Total</em><strong>{chTest.memory.total} MB</strong>
-									</div>
-									<span className={classNames('ss-progress', {
-										'red': chTest.memory.percentage > 70,
-										'warning': chTest.memory.percentage > 40,
-										'error': chTest.memory.percentage === 0,
-									})}>
-										<i style={{width: `${chTest.memory.percentage}%`}} />
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
 									</span>
-								</section>
-							</div>}
-							<div className="ss-time">
-								{test.time}
-							</div>
-						</section>}
-						{chProd && <section>
-							<div><h2>CH Prod</h2></div>
-							<div>
-								<em>Spectra</em> <strong>{chProd.version && chProd.version}</strong>
+									<i className={prod.grapeStatus}>{prod.mangoStatus}</i>
 								</div>
-							<div>
-								Grape <span role="img" aria-label="grape">🍇</span>
-								<i className={chProd.grapeStatus}>{chProd.grapeStatus}</i>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Free</em>
+											<strong>{prod.memory.free} MB</strong>
+										</div>
+										<div>
+											<em>Total</em>
+											<strong>{prod.memory.total} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: prod.memory.percentage > 70,
+												warning: prod.memory.percentage > 40,
+												error: prod.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${prod.memory.percentage}%` }} />
+										</span>
+									</section>
 								</div>
-							<div>
-								Mango <span role="img" aria-label="mango">🍊</span>
-								<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
-							</div>
-							{chProd.memory && <div className="ss-memory">
-								Memory
-								<section>
-									<div>
-										<em>Free</em><strong>{chProd.memory.free} MB</strong>
-									</div>
-									<div>
-										<em>Total</em><strong>{chProd.memory.total} MB</strong>
-									</div>
-									<span className={classNames('ss-progress', {
-										'red': chProd.memory.percentage > 70,
-										'warning': chProd.memory.percentage > 40,
-										'error': chProd.memory.percentage === 0,
-									})}>
-										<i style={{width: `${chProd.memory.percentage}%`}} />
+								<div className="ss-time">{prod.time}</div>
+							</section>
+							<section>
+								<div>
+									<h2>Pre Test</h2>
+								</div>
+								<div>
+									<em>Spectra</em> <strong>{preTest.version}</strong>
+								</div>
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
 									</span>
-								</section>
-							</div>}
-							<div className="ss-time">
-								{chProd.time}
-							</div>
-						</section>}
-					</div>}
+									<i className={preTest.grapeStatus}>{preTest.grapeStatus}</i>
+								</div>
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
+									</span>
+									<i className={preTest.grapeStatus}>{preTest.mangoStatus}</i>
+								</div>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Free</em>
+											<strong>{preTest.memory.free} MB</strong>
+										</div>
+										<div>
+											<em>Total</em>
+											<strong>{preTest.memory.total} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: preTest.memory.percentage > 70,
+												warning: preTest.memory.percentage > 40,
+												error: preTest.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${preTest.memory.percentage}%` }} />
+										</span>
+									</section>
+								</div>
+								<div className="ss-time">{preTest.time}</div>
+							</section>
+							<section>
+								<div>
+									<h2>CH Test</h2>
+								</div>
+								<div>
+									<em>Spectra</em> <strong>{chTest.version}</strong>
+								</div>
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
+									</span>
+									<i className={chTest.grapeStatus}>{chTest.grapeStatus}</i>
+								</div>
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
+									</span>
+									<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
+								</div>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Free</em>
+											<strong>{chTest.memory.free} MB</strong>
+										</div>
+										<div>
+											<em>Total</em>
+											<strong>{chTest.memory.total} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: chTest.memory.percentage > 70,
+												warning: chTest.memory.percentage > 40,
+												error: chTest.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${chTest.memory.percentage}%` }} />
+										</span>
+									</section>
+								</div>
+								<div className="ss-time">{test.time}</div>
+							</section>
+							<section>
+								<div>
+									<h2>CH Prod</h2>
+								</div>
+								<div>
+									<em>Spectra</em> <strong>{chProd.version}</strong>
+								</div>
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
+									</span>
+									<i className={chProd.grapeStatus}>{chProd.grapeStatus}</i>
+								</div>
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
+									</span>
+									<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
+								</div>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Free</em>
+											<strong>{chProd.memory.free} MB</strong>
+										</div>
+										<div>
+											<em>Total</em>
+											<strong>{chProd.memory.total} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: chProd.memory.percentage > 70,
+												warning: chProd.memory.percentage > 40,
+												error: chProd.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${chProd.memory.percentage}%` }} />
+										</span>
+									</section>
+								</div>
+								<div className="ss-time">{chProd.time}</div>
+							</section>
+						</div>
+					)}
 					<div className="ss-github">
-						<a href="https://github.com/luangjokaj/spectra-status" 
+						<a
+							href="https://github.com/luangjokaj/spectra-status"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
