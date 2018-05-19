@@ -108,7 +108,7 @@ class App extends Component {
 						</div>
 					</header>
 					{hasData && <div className="ss-content">
-						<section>
+						{test && <section>
 							<div><h2>Test</h2></div>
 							<div>
 								<em>Spectra</em> <strong>{test.version}</strong>
@@ -133,6 +133,7 @@ class App extends Component {
 									<span className={classNames('ss-progress', {
 										'red': test.memory.percentage > 70,
 										'warning': test.memory.percentage > 40,
+										'error': test.memory.percentage === 0,
 									})}>
 										<i style={{width: `${test.memory.percentage}%`}} />
 									</span>
@@ -141,8 +142,8 @@ class App extends Component {
 							<div className="ss-time">
 								{test.time}
 							</div>
-						</section>
-						<section>
+						</section>}
+						{prod && <section>
 							<div><h2>Prod</h2></div>
 							<div>
 								<em>Spectra</em> <strong>{prod.version}</strong>
@@ -167,6 +168,7 @@ class App extends Component {
 									<span className={classNames('ss-progress', {
 										'red': prod.memory.percentage > 70,
 										'warning': prod.memory.percentage > 40,
+										'error': prod.memory.percentage === 0,
 									})}>
 										<i style={{width: `${prod.memory.percentage}%`}} />
 									</span>
@@ -175,8 +177,8 @@ class App extends Component {
 							<div className="ss-time">
 								{prod.time}
 							</div>
-						</section>
-						<section>
+						</section>}
+						{preTest && <section>
 							<div><h2>Pre Test</h2></div>
 							<div>
 								<em>Spectra</em> <strong>{preTest.version}</strong>
@@ -201,6 +203,7 @@ class App extends Component {
 									<span className={classNames('ss-progress', {
 										'red': preTest.memory.percentage > 70,
 										'warning': preTest.memory.percentage > 40,
+										'error': preTest.memory.percentage === 0,
 									})}>
 										<i style={{width: `${preTest.memory.percentage}%`}} />
 									</span>
@@ -209,8 +212,8 @@ class App extends Component {
 							<div className="ss-time">
 								{preTest.time}
 							</div>
-						</section>
-						<section>
+						</section>}
+						{chTest && <section>
 							<div><h2>CH Test</h2></div>
 							<div>
 								<em>Spectra</em> <strong>{chTest.version}</strong>
@@ -235,6 +238,7 @@ class App extends Component {
 									<span className={classNames('ss-progress', {
 										'red': chTest.memory.percentage > 70,
 										'warning': chTest.memory.percentage > 40,
+										'error': chTest.memory.percentage === 0,
 									})}>
 										<i style={{width: `${chTest.memory.percentage}%`}} />
 									</span>
@@ -243,8 +247,8 @@ class App extends Component {
 							<div className="ss-time">
 								{test.time}
 							</div>
-						</section>
-						<section>
+						</section>}
+						{chProd && <section>
 							<div><h2>CH Prod</h2></div>
 							<div>
 								<em>Spectra</em> <strong>{chProd.version}</strong>
@@ -269,6 +273,7 @@ class App extends Component {
 									<span className={classNames('ss-progress', {
 										'red': chProd.memory.percentage > 70,
 										'warning': chProd.memory.percentage > 40,
+										'error': chProd.memory.percentage === 0,
 									})}>
 										<i style={{width: `${chProd.memory.percentage}%`}} />
 									</span>
@@ -277,7 +282,7 @@ class App extends Component {
 							<div className="ss-time">
 								{chProd.time}
 							</div>
-						</section>
+						</section>}
 					</div>}
 					<div className="ss-github">
 						<a href="https://github.com/luangjokaj/spectra-status" 

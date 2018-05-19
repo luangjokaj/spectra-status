@@ -357,6 +357,10 @@
 									background: var(--error-color);
 								}
 
+								&.error {
+									background: var(--dark-blue);
+								}
+
 								& i {
 									position: absolute;
 									height: 5px;
