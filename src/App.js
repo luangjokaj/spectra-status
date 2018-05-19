@@ -8,6 +8,7 @@ const TEST = 'https://riangle.com/healthcheck-test.php';
 const PROD = 'https://riangle.com/healthcheck-prod.php';
 const CHTEST = 'https://riangle.com/healthcheck-ch-test.php';
 const CHPROD = 'https://riangle.com/healthcheck-ch-prod.php';
+const PRETEST = 'https://riangle.com/healthcheck-pre-test.php';
 
 class App extends Component {
 	constructor(props) {
@@ -80,6 +81,7 @@ class App extends Component {
 			this.fetchAPI(PROD, 'prod');
 			this.fetchAPI(CHTEST, 'chTest');
 			this.fetchAPI(CHPROD, 'chProd');
+			this.fetchAPI(PRETEST, 'preTest');
 		}, 1500);
 	}
 
@@ -88,7 +90,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { test, prod, chTest, chProd } = this.state;
+		const { test, prod, chTest, chProd, preTest } = this.state;
 		const hasData = prod['version'] && test['version'] && test['version'];
 
 		return (
@@ -129,8 +131,8 @@ class App extends Component {
 										<em>Total</em><strong>{test.memory.total} MB</strong>
 									</div>
 									<span className={classNames('ss-progress', {
-										'warning': test.memory.percentage < 50,
-										'red': test.memory.percentage < 20,
+										'red': test.memory.percentage > 70,
+										'warning': test.memory.percentage > 40,
 									})}>
 										<i style={{width: `${test.memory.percentage}%`}} />
 									</span>
@@ -163,8 +165,8 @@ class App extends Component {
 										<em>Total</em><strong>{prod.memory.total} MB</strong>
 									</div>
 									<span className={classNames('ss-progress', {
-										'warning': prod.memory.percentage < 50,
-										'red': prod.memory.percentage < 20,
+										'red': prod.memory.percentage > 70,
+										'warning': prod.memory.percentage > 40,
 									})}>
 										<i style={{width: `${prod.memory.percentage}%`}} />
 									</span>
@@ -172,6 +174,40 @@ class App extends Component {
 							</div>}
 							<div className="ss-time">
 								{prod.time}
+							</div>
+						</section>
+						<section>
+							<div><h2>Pre Test</h2></div>
+							<div>
+								<em>Spectra</em> <strong>{preTest.version}</strong>
+								</div>
+							<div>
+								Grape <span role="img" aria-label="grape">🍇</span>
+								<i className={preTest.grapeStatus}>{preTest.grapeStatus}</i>
+								</div>
+							<div>
+								Mango <span role="img" aria-label="mango">🍊</span>
+								<i className={preTest.grapeStatus}>{preTest.mangoStatus}</i>
+							</div>
+							{preTest.memory && <div className="ss-memory">
+								Memory
+								<section>
+									<div>
+										<em>Free</em><strong>{preTest.memory.free} MB</strong>
+									</div>
+									<div>
+										<em>Total</em><strong>{preTest.memory.total} MB</strong>
+									</div>
+									<span className={classNames('ss-progress', {
+										'red': preTest.memory.percentage > 70,
+										'warning': preTest.memory.percentage > 40,
+									})}>
+										<i style={{width: `${preTest.memory.percentage}%`}} />
+									</span>
+								</section>
+							</div>}
+							<div className="ss-time">
+								{preTest.time}
 							</div>
 						</section>
 						<section>
@@ -197,8 +233,8 @@ class App extends Component {
 										<em>Total</em><strong>{chTest.memory.total} MB</strong>
 									</div>
 									<span className={classNames('ss-progress', {
-										'warning': chTest.memory.percentage < 50,
-										'red': chTest.memory.percentage < 20,
+										'red': chTest.memory.percentage > 70,
+										'warning': chTest.memory.percentage > 40,
 									})}>
 										<i style={{width: `${chTest.memory.percentage}%`}} />
 									</span>
@@ -231,8 +267,8 @@ class App extends Component {
 										<em>Total</em><strong>{chProd.memory.total} MB</strong>
 									</div>
 									<span className={classNames('ss-progress', {
-										'warning': chProd.memory.percentage < 50,
-										'red': chProd.memory.percentage < 20,
+										'red': chProd.memory.percentage > 70,
+										'warning': chProd.memory.percentage > 40,
 									})}>
 										<i style={{width: `${chProd.memory.percentage}%`}} />
 									</span>
