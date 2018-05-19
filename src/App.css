@@ -126,7 +126,13 @@
 				transition: all .5s ease;
 
 				&:hover {
-					transform: scale(1.05);
+					transform: scale(1.1);
+					transition: all .3s ease;
+				}
+
+				&:active {
+					transform: scale(1.2);
+					transition: all .3s ease;
 				}
 
 				& .ss-first,
@@ -396,6 +402,12 @@
 				&:hover {
 					& svg {
 						transform: scale(1.1);
+					}
+				}
+
+				&:active {
+					& svg {
+						transform: scale(1.15);
 					}
 				}
 			}
