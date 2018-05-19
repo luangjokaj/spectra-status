@@ -117,7 +117,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={test.mangoStatus}>{test.mangoStatus}</i>
 							</div>
-							{test.memory.free && <div className="ss-memory">
+							{test.memory && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -126,7 +126,10 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{test.memory.total} MB</strong>
 									</div>
-									<span className="ss-progress">
+									<span className={classNames('ss-progress', {
+										'warning': test.memory.percentage < 50,
+										'red': test.memory.percentage < 20,
+									})}>
 										<i style={{width: `${test.memory.percentage}%`}} />
 									</span>
 								</section>
@@ -148,7 +151,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={prod.grapeStatus}>{prod.mangoStatus}</i>
 							</div>
-							{prod.memory.free && <div className="ss-memory">
+							{prod.memory && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -157,8 +160,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{prod.memory.total} MB</strong>
 									</div>
-									<span className="ss-progress">
-										<i style={{width: `${test.memory.percentage}%`}} />
+									<span className={classNames('ss-progress', {
+										'warning': prod.memory.percentage < 50,
+										'red': prod.memory.percentage < 20,
+									})}>
+										<i style={{width: `${prod.memory.percentage}%`}} />
 									</span>
 								</section>
 							</div>}
@@ -179,7 +185,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
 							</div>
-							{chTest.memory.free && <div className="ss-memory">
+							{chTest.memory && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -188,8 +194,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{chTest.memory.total} MB</strong>
 									</div>
-									<span className="ss-progress">
-										<i style={{width: `${test.memory.percentage}%`}} />
+									<span className={classNames('ss-progress', {
+										'warning': chTest.memory.percentage < 50,
+										'red': chTest.memory.percentage < 20,
+									})}>
+										<i style={{width: `${chTest.memory.percentage}%`}} />
 									</span>
 								</section>
 							</div>}
@@ -210,7 +219,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
 							</div>
-							{chProd.memory.free && <div className="ss-memory">
+							{chProd.memory && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -219,8 +228,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{chProd.memory.total} MB</strong>
 									</div>
-									<span className="ss-progress">
-										<i style={{width: `${test.memory.percentage}%`}} />
+									<span className={classNames('ss-progress', {
+										'warning': chProd.memory.percentage < 50,
+										'red': chProd.memory.percentage < 20,
+									})}>
+										<i style={{width: `${chProd.memory.percentage}%`}} />
 									</span>
 								</section>
 							</div>}
