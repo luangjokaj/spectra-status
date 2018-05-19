@@ -118,7 +118,7 @@ class App extends Component {
 								<i className={test.mangoStatus}>{test.mangoStatus}</i>
 							</div>
 							{test.memory && <div className="ss-memory">
-								Memory <span role="img" aria-label="mango">💾</span>
+								Memory
 								<section>
 									<div>
 										<em>Free</em><strong>{test.memory.free} MB</strong>
@@ -152,7 +152,7 @@ class App extends Component {
 								<i className={prod.grapeStatus}>{prod.mangoStatus}</i>
 							</div>
 							{prod.memory && <div className="ss-memory">
-								Memory <span role="img" aria-label="mango">💾</span>
+								Memory
 								<section>
 									<div>
 										<em>Free</em><strong>{prod.memory.free} MB</strong>
@@ -186,7 +186,7 @@ class App extends Component {
 								<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
 							</div>
 							{chTest.memory && <div className="ss-memory">
-								Memory <span role="img" aria-label="mango">💾</span>
+								Memory
 								<section>
 									<div>
 										<em>Free</em><strong>{chTest.memory.free} MB</strong>
@@ -220,7 +220,7 @@ class App extends Component {
 								<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
 							</div>
 							{chProd.memory && <div className="ss-memory">
-								Memory <span role="img" aria-label="mango">💾</span>
+								Memory
 								<section>
 									<div>
 										<em>Free</em><strong>{chProd.memory.free} MB</strong>
