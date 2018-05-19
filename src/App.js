@@ -38,6 +38,8 @@ class App extends Component {
 			console.log(receivedResponse, 'responseee');
 			let freeMemory = receivedResponse.grape.data.memory.free.match(/^\d*/);
 			let totalMemory = receivedResponse.grape.data.memory.total.match(/^\d*/);
+			let calculated = totalMemory - freeMemory;
+			let percentage = (calculated / freeMemory) * 100;
 			this.setState({
 			[env]: {
 					grapeStatus: receivedResponse.grape.status,
@@ -47,6 +49,7 @@ class App extends Component {
 					memory: {
 						free: freeMemory,
 						total: totalMemory,
+						percentage: percentage,
 					}
 				}
 			})
@@ -62,6 +65,7 @@ class App extends Component {
 					memory: {
 						free: 'Unknown',
 						total: 'Unknown',
+						percentage: 0,
 					}
 				}
 			})
@@ -84,6 +88,7 @@ class App extends Component {
 	render() {
 		const { test, prod, chTest, chProd } = this.state;
 		const hasData = prod['version'] && test['version'] && test['version'];
+
 		return (
 			<div className={classNames('ss-wrapper', {
 				'loaded': hasData
@@ -112,7 +117,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={test.mangoStatus}>{test.mangoStatus}</i>
 							</div>
-							<div className="ss-memory">
+							{test.memory.free && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -121,8 +126,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{test.memory.total} MB</strong>
 									</div>
+									<span className="ss-progress">
+										<i style={{width: `${test.memory.percentage}%`}} />
+									</span>
 								</section>
-							</div>
+							</div>}
 							<div className="ss-time">
 								{test.time}
 							</div>
@@ -140,7 +148,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={prod.grapeStatus}>{prod.mangoStatus}</i>
 							</div>
-							<div className="ss-memory">
+							{prod.memory.free && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -149,8 +157,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{prod.memory.total} MB</strong>
 									</div>
+									<span className="ss-progress">
+										<i style={{width: `${test.memory.percentage}%`}} />
+									</span>
 								</section>
-							</div>
+							</div>}
 							<div className="ss-time">
 								{prod.time}
 							</div>
@@ -168,7 +179,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
 							</div>
-							<div className="ss-memory">
+							{chTest.memory.free && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -177,8 +188,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{chTest.memory.total} MB</strong>
 									</div>
+									<span className="ss-progress">
+										<i style={{width: `${test.memory.percentage}%`}} />
+									</span>
 								</section>
-							</div>
+							</div>}
 							<div className="ss-time">
 								{test.time}
 							</div>
@@ -196,7 +210,7 @@ class App extends Component {
 								Mango <span role="img" aria-label="mango">🍊</span>
 								<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
 							</div>
-							<div className="ss-memory">
+							{chProd.memory.free && <div className="ss-memory">
 								Memory <span role="img" aria-label="mango">💾</span>
 								<section>
 									<div>
@@ -205,8 +219,11 @@ class App extends Component {
 									<div>
 										<em>Total</em><strong>{chProd.memory.total} MB</strong>
 									</div>
+									<span className="ss-progress">
+										<i style={{width: `${test.memory.percentage}%`}} />
+									</span>
 								</section>
-							</div>
+							</div>}
 							<div className="ss-time">
 								{chProd.time}
 							</div>
