@@ -347,14 +347,18 @@
 								overflow: hidden;
 								width: 0;
 								transition: all 1s ease;
-								background: var(--success-color);
+								background: var(--medium-blue);
 
 								&.warning {
-									background: var(--warning-color);
+									& i {
+										background: var(--warning-color);
+									}
 								}
 
 								&.red {
-									background: var(--error-color);
+									& i {
+										background: var(--error-color);
+									}
 								}
 
 								&.error {
@@ -365,8 +369,8 @@
 									position: absolute;
 									height: 5px;
 									bottom: 0;
-									right: 0;
-									background: var(--medium-blue);
+									left: 0;
+									background: var(--success-color);
 									max-width: 98%;
 									
 									&:after {

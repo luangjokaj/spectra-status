@@ -148,12 +148,12 @@ class App extends Component {
 									Memory
 									<section>
 										<div>
-											<em>Free</em>
-											<strong>{test.memory.free} MB</strong>
-										</div>
-										<div>
 											<em>Total</em>
 											<strong>{test.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{test.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
@@ -193,12 +193,12 @@ class App extends Component {
 									Memory
 									<section>
 										<div>
-											<em>Free</em>
-											<strong>{prod.memory.free} MB</strong>
-										</div>
-										<div>
 											<em>Total</em>
 											<strong>{prod.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{prod.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
@@ -238,12 +238,12 @@ class App extends Component {
 									Memory
 									<section>
 										<div>
-											<em>Free</em>
-											<strong>{preTest.memory.free} MB</strong>
-										</div>
-										<div>
 											<em>Total</em>
 											<strong>{preTest.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{preTest.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
@@ -283,12 +283,12 @@ class App extends Component {
 									Memory
 									<section>
 										<div>
-											<em>Free</em>
-											<strong>{chTest.memory.free} MB</strong>
-										</div>
-										<div>
 											<em>Total</em>
 											<strong>{chTest.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{chTest.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
@@ -328,12 +328,12 @@ class App extends Component {
 									Memory
 									<section>
 										<div>
-											<em>Free</em>
-											<strong>{chProd.memory.free} MB</strong>
-										</div>
-										<div>
 											<em>Total</em>
 											<strong>{chProd.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{chProd.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
