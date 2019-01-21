@@ -94,7 +94,7 @@ class App extends Component {
 			this.fetchAPI(CH1TEST, 'ch1Test');
 			this.fetchAPI(CH1PROD, 'ch1Prod');
 			this.fetchAPI(DSTTEST, 'dstTest');
-			this.fetchAPI(DSTTEST, 'dstProd');
+			this.fetchAPI(DSTPROD, 'dstProd');
 		}, 1500);
 	};
 
