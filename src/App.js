@@ -6,8 +6,10 @@ import './App.css';
 
 const TEST = 'https://riangle.com/healthcheck-test.php';
 const PROD = 'https://riangle.com/healthcheck-prod.php';
-const CHTEST = 'https://riangle.com/healthcheck-ch-test.php';
-const CHPROD = 'https://riangle.com/healthcheck-ch-prod.php';
+const CH1TEST = 'https://riangle.com/healthcheck-ch1-test.php';
+const CH1PROD = 'https://riangle.com/healthcheck-ch1-prod.php';
+const DSTTEST = 'https://riangle.com/healthcheck-dst-test.php';
+const DSTPROD = 'https://riangle.com/healthcheck-dst-prod.php';
 const PRETEST = 'https://riangle.com/healthcheck-pre-test.php';
 
 class App extends Component {
@@ -18,8 +20,10 @@ class App extends Component {
 			test: {},
 			prod: {},
 			preTest: {},
-			chTest: {},
-			chProd: {},
+			ch1Test: {},
+			ch1Prod: {},
+			dstTest: {},
+			dstProd: {},
 		};
 	}
 
@@ -28,8 +32,10 @@ class App extends Component {
 			test: {},
 			prod: {},
 			preTest: {},
-			chTest: {},
-			chProd: {},
+			ch1Test: {},
+			ch1Prod: {},
+			dstTest: {},
+			dstProd: {},
 		});
 		this.fetchData();
 	};
@@ -85,8 +91,10 @@ class App extends Component {
 			this.fetchAPI(TEST, 'test');
 			this.fetchAPI(PROD, 'prod');
 			this.fetchAPI(PRETEST, 'preTest');
-			this.fetchAPI(CHTEST, 'chTest');
-			this.fetchAPI(CHPROD, 'chProd');
+			this.fetchAPI(CH1TEST, 'ch1Test');
+			this.fetchAPI(CH1PROD, 'ch1Prod');
+			this.fetchAPI(DSTTEST, 'dstTest');
+			this.fetchAPI(DSTTEST, 'dstProd');
 		}, 1500);
 	};
 
@@ -95,13 +103,15 @@ class App extends Component {
 	}
 
 	render() {
-		const { test, prod, preTest, chTest, chProd } = this.state;
+		const { test, prod, preTest, ch1Test, ch1Prod, dstTest, dstProd } = this.state;
 		const hasData =
 			test['version'] &&
 			prod['version'] &&
 			preTest['version'] &&
-			chTest['version'] &&
-			chProd['version'];
+			ch1Test['version'] &&
+			ch1Prod['version'] &&
+			dstTest['version'] &&
+			dstProd['version'];
 
 		return (
 			<div
@@ -260,44 +270,44 @@ class App extends Component {
 							</section>
 							<section>
 								<div>
-									<h2>CH Test</h2>
+									<h2>CH1 Test</h2>
 								</div>
 								<div>
-									<em>Spectra</em> <strong>{chTest.version}</strong>
+									<em>Spectra</em> <strong>{ch1Test.version}</strong>
 								</div>
 								<div>
 									Grape{' '}
 									<span role="img" aria-label="grape">
 										🍇
 									</span>
-									<i className={chTest.grapeStatus}>{chTest.grapeStatus}</i>
+									<i className={ch1Test.grapeStatus}>{ch1Test.grapeStatus}</i>
 								</div>
 								<div>
 									Mango{' '}
 									<span role="img" aria-label="mango">
 										🍊
 									</span>
-									<i className={chTest.mangoStatus}>{chTest.mangoStatus}</i>
+									<i className={ch1Test.mangoStatus}>{ch1Test.mangoStatus}</i>
 								</div>
 								<div className="ss-memory">
 									Memory
 									<section>
 										<div>
 											<em>Total</em>
-											<strong>{chTest.memory.total} MB</strong>
+											<strong>{ch1Test.memory.total} MB</strong>
 										</div>
 										<div>
 											<em>Free</em>
-											<strong>{chTest.memory.free} MB</strong>
+											<strong>{ch1Test.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
-												red: chTest.memory.percentage > 70,
-												warning: chTest.memory.percentage > 40,
-												error: chTest.memory.percentage === 0,
+												red: ch1Test.memory.percentage > 70,
+												warning: ch1Test.memory.percentage > 40,
+												error: ch1Test.memory.percentage === 0,
 											})}
 										>
-											<i style={{ width: `${chTest.memory.percentage}%` }} />
+											<i style={{ width: `${ch1Test.memory.percentage}%` }} />
 										</span>
 									</section>
 								</div>
@@ -305,48 +315,139 @@ class App extends Component {
 							</section>
 							<section>
 								<div>
-									<h2>CH Prod</h2>
+									<h2>CH1 Prod</h2>
 								</div>
 								<div>
-									<em>Spectra</em> <strong>{chProd.version}</strong>
+									<em>Spectra</em> <strong>{ch1Prod.version}</strong>
 								</div>
 								<div>
 									Grape{' '}
 									<span role="img" aria-label="grape">
 										🍇
 									</span>
-									<i className={chProd.grapeStatus}>{chProd.grapeStatus}</i>
+									<i className={ch1Prod.grapeStatus}>{ch1Prod.grapeStatus}</i>
 								</div>
 								<div>
 									Mango{' '}
 									<span role="img" aria-label="mango">
 										🍊
 									</span>
-									<i className={chProd.grapeStatus}>{chProd.mangoStatus}</i>
+									<i className={ch1Prod.grapeStatus}>{ch1Prod.mangoStatus}</i>
 								</div>
 								<div className="ss-memory">
 									Memory
 									<section>
 										<div>
 											<em>Total</em>
-											<strong>{chProd.memory.total} MB</strong>
+											<strong>{ch1Prod.memory.total} MB</strong>
 										</div>
 										<div>
 											<em>Free</em>
-											<strong>{chProd.memory.free} MB</strong>
+											<strong>{ch1Prod.memory.free} MB</strong>
 										</div>
 										<span
 											className={classNames('ss-progress', {
-												red: chProd.memory.percentage > 70,
-												warning: chProd.memory.percentage > 40,
-												error: chProd.memory.percentage === 0,
+												red: ch1Prod.memory.percentage > 70,
+												warning: ch1Prod.memory.percentage > 40,
+												error: ch1Prod.memory.percentage === 0,
 											})}
 										>
-											<i style={{ width: `${chProd.memory.percentage}%` }} />
+											<i style={{ width: `${ch1Prod.memory.percentage}%` }} />
 										</span>
 									</section>
 								</div>
-								<div className="ss-time">{chProd.time}</div>
+								<div className="ss-time">{ch1Prod.time}</div>
+							</section>
+
+							<section>
+								<div>
+									<h2>DST Test</h2>
+								</div>
+								<div>
+									<em>Spectra</em> <strong>{dstTest.version}</strong>
+								</div>
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
+									</span>
+									<i className={dstTest.grapeStatus}>{dstTest.grapeStatus}</i>
+								</div>
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
+									</span>
+									<i className={dstTest.mangoStatus}>{dstTest.mangoStatus}</i>
+								</div>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Total</em>
+											<strong>{dstTest.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{dstTest.memory.free} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: dstTest.memory.percentage > 70,
+												warning: dstTest.memory.percentage > 40,
+												error: dstTest.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${dstTest.memory.percentage}%` }} />
+										</span>
+									</section>
+								</div>
+								<div className="ss-time">{test.time}</div>
+							</section>
+							<section>
+								<div>
+									<h2>DST Prod</h2>
+								</div>
+								<div>
+									<em>Spectra</em> <strong>{dstProd.version}</strong>
+								</div>
+								<div>
+									Grape{' '}
+									<span role="img" aria-label="grape">
+										🍇
+									</span>
+									<i className={dstProd.grapeStatus}>{dstProd.grapeStatus}</i>
+								</div>
+								<div>
+									Mango{' '}
+									<span role="img" aria-label="mango">
+										🍊
+									</span>
+									<i className={dstProd.grapeStatus}>{dstProd.mangoStatus}</i>
+								</div>
+								<div className="ss-memory">
+									Memory
+									<section>
+										<div>
+											<em>Total</em>
+											<strong>{dstProd.memory.total} MB</strong>
+										</div>
+										<div>
+											<em>Free</em>
+											<strong>{dstProd.memory.free} MB</strong>
+										</div>
+										<span
+											className={classNames('ss-progress', {
+												red: dstProd.memory.percentage > 70,
+												warning: dstProd.memory.percentage > 40,
+												error: dstProd.memory.percentage === 0,
+											})}
+										>
+											<i style={{ width: `${dstProd.memory.percentage}%` }} />
+										</span>
+									</section>
+								</div>
+								<div className="ss-time">{dstProd.time}</div>
 							</section>
 						</div>
 					)}
