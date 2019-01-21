@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $ch = curl_init();
 
 // set URL and other appropriate options
-curl_setopt($ch, CURLOPT_URL, 'http://chprod.spectra.io/healthcheck');
+curl_setopt($ch, CURLOPT_URL, 'http://dstprod.spectra.io/healthcheck');
 curl_setopt($ch, CURLOPT_HEADER, 0);
 
 // copy the handle

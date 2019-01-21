@@ -207,7 +207,9 @@
 				}
 
 				&:nth-child(4),
-				&:nth-child(5) {
+				&:nth-child(5),
+				&:nth-child(6),
+				&:nth-child(7) {
 					flex-basis: 50%;
 					max-width: 50%;
 					border-top: solid 1px var(--medium-blue);
@@ -223,11 +225,13 @@
 					}
 
 					&:nth-child(2),
-					&:nth-child(4) {
+					&:nth-child(4),
+					&:nth-child(6) {
 						border-right: none;
 					}
 
-					&:nth-child(5) {
+					&:nth-child(5),
+					&:nth-child(7) {
 						flex-basis: 100%;
 						max-width: 100%;
 					}
@@ -245,7 +249,9 @@
 					}
 
 					&:nth-child(4),
-					&:nth-child(5) {
+					&:nth-child(5),
+					&:nth-child(6),
+					&:nth-child(7) {
 						flex-basis: 100%;
 						max-width: 100%;
 						border-top: none;
